@@ -2,27 +2,23 @@ import java.util.List;
 import java.util.SplittableRandom;
 
 public class LabGroup {
-    private String id;
+    private int id;
     private int size;
     private int freeSpots;
     private Course parentCourse;
     private List<Student> participants;
 
-    public LabGroup(){
-
-    }
-
-    public LabGroup(String id, int freeSpots, Course parentCourse){
-        this.id = parentCourse.getId() + id;
-        this.size = this.freeSpots =  freeSpots;
+    public LabGroup(int id, Course parentCourse){
+        this.id = id;
+        this.size = this.freeSpots =  20; // every LabGroup is created with 20 spots available by default
         this.parentCourse = parentCourse;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

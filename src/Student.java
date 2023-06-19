@@ -1,10 +1,11 @@
-import java.util.List;
+
+import java.util.Map;
 
 public class Student {
     private String id;
     private String FName;
     private String LName;
-    private List<LabGroup> enrolledTo;
+    private Map<String, String> enrolledTo;
 
 
     public String getId() {
@@ -31,16 +32,20 @@ public class Student {
         this.LName = LName;
     }
 
-    public List<LabGroup> getEnrolledTo() {
+    public Map<String, String> getEnrolledTo() {
         return enrolledTo;
     }
 
-    public void setEnrolledTo(List<LabGroup> enrolledTo) {
+    public void setEnrolledTo(Map<String, String> enrolledTo) {
         this.enrolledTo = enrolledTo;
     }
 
-    public void addLabGroup(){
+    public void enrollToLabGroup(String courseId, String labGroupId){
+        enrolledTo.put(courseId,labGroupId);
+    }
 
+    public void updateLabGroup(String courseId, String labgroupId){
+        enrolledTo.replace(courseId,labgroupId);
     }
 
 }

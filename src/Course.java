@@ -2,28 +2,28 @@ import java.util.List;
 
 public class Course {
 
-    private String id;
+    private int id;
     private String courseName;
     private int credits;
     private List<LabGroup> labGroups;
 
-    public Course(String id, String courseName, int credits) {
+    public Course(int id, String courseName, int credits) {
         this.id = id;
         this.courseName = courseName;
         this.credits = credits;
 
         // creating and adding default lab groups per course
-        LabGroup defaultLabGroup1 = new LabGroup("1",20,this);
-        LabGroup defaultLabGroup2 = new LabGroup("2", 20, this);
+        LabGroup defaultLabGroup1 = new LabGroup(1,this);
+        LabGroup defaultLabGroup2 = new LabGroup(2, this);
         this.labGroups.add(defaultLabGroup1);
         this.labGroups.add(defaultLabGroup2);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,5 +45,11 @@ public class Course {
 
     public List<LabGroup> getLabGroups() {
         return labGroups;
+    }
+
+    public void addNewLabGroup() {
+        int id = labGroups.size() + 1;
+        LabGroup newLabGroup = new LabGroup(id, this);
+        labGroups.add(newLabGroup);
     }
 }
