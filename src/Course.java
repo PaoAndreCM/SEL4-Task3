@@ -11,7 +11,12 @@ public class Course {
         this.id = id;
         this.courseName = courseName;
         this.credits = credits;
-        this.labGroups = labGroups; // TODO build two labs and add them to the list
+
+        // creating and adding default lab groups per course
+        LabGroup defaultLabGroup1 = new LabGroup("1",20,this);
+        LabGroup defaultLabGroup2 = new LabGroup("2", 20, this);
+        this.labGroups.add(defaultLabGroup1);
+        this.labGroups.add(defaultLabGroup2);
     }
 
     public String getId() {
@@ -20,5 +25,25 @@ public class Course {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public List<LabGroup> getLabGroups() {
+        return labGroups;
     }
 }
