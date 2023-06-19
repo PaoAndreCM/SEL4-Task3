@@ -12,14 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-@Path("/student")
+@Path("/students")
 public class StudentResource {
 	private static Map<Integer, Student> map;
 	private static AtomicInteger counter = new AtomicInteger();
 
 	static {
 		map = new ConcurrentHashMap<>();
-		Instant instant = Instant.now();
 		map.put(1, new Student("1", "Paola", "Carreno"));
 	    map.put(2, new Student("2", "Sahar", "Behravesh"));
 		map.put(3, new Student("3", "Yadi", "Pemberton"));
