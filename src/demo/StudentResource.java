@@ -46,7 +46,7 @@ public class StudentResource {
 		return Response.ok(student.toString()).build();
 	}
 
-	/* @GET
+/* 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String getAllMessagesAsHtml() {
 		StringBuilder stringBuilder = new StringBuilder("<html><head><meta charset=\"UTF-8\"></head><body><table border='1'>");
@@ -62,9 +62,9 @@ public class StudentResource {
 				);
 		stringBuilder.append("</table></body></html>");
 		return stringBuilder.toString();
-	}
+	} */
 
-	@GET
+	/* @GET
 	@Path("{id}")
 	@Produces(MediaType.TEXT_HTML)
 	public Response getMessageAsHtml(@PathParam("id") int id) {
@@ -81,9 +81,9 @@ public class StudentResource {
 				.append(message.getTimestamp())
 				.append("</body></html>");
 		return Response.ok(stringBuilder.toString()).build();
-	}
+	} */
 
-	@GET
+	/* @GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Student> getAllMessagesAsJson() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -91,9 +91,9 @@ public class StudentResource {
 				.sorted((m1, m2) -> -m1.getTimestamp().compareTo(m2.getTimestamp()))
 				.collect(Collectors.toList());
 		return list;
-	}
+	} */
 
-	@GET
+	/* @GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMessageAsJson(@PathParam("id") int id) {
@@ -102,9 +102,9 @@ public class StudentResource {
 			return Response.noContent().status(Response.Status.NOT_FOUND).build();
 		}
 		return Response.ok(message).build();
-	}
+	} */
 
-	@GET
+	/* @GET
 	@Path("limited")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Student> getAllMessagesAsJsonLimited(@QueryParam("n") @DefaultValue("3") int n) {
@@ -115,20 +115,20 @@ public class StudentResource {
 				.limit(n)
 				.collect(Collectors.toList());
 		return list;
-	}
+	} */
 
-	@POST
+/* 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response newMessage(@Context UriInfo uriInfo, Student message) {
+	public Response newStudent(@Context UriInfo uriInfo, Student student) {
 		int id = counter.incrementAndGet();
-		message.setId(id);
-		message.setTimestamp(Instant.now());
-		map.put(id, message);
+		String idString = String.valueOf(id);
+		student.setId(idString);
+		map.put(id, student);
 		URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
 		return Response.created(location).build();
-	}
+	} */
 
-	@PUT
+	/* @PUT
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMessage(@PathParam("id") int id, Student message) {
@@ -140,9 +140,9 @@ public class StudentResource {
 			map.put(id, message);
 			return Response.noContent().status(Response.Status.OK).build();
 		}
-	}
+	} */
 
-	@DELETE
+	/* @DELETE
 	@Path("{id}")
 	public Response deleteMessage(@PathParam("id") int id) {
 		if (map.get(id) != null) {
@@ -151,16 +151,18 @@ public class StudentResource {
 		} else {
 			return Response.noContent().status(Response.Status.NOT_FOUND).build();
 		}
-	}
+	} */
 
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response newMessageFromForm(@Context UriInfo uriInfo, @FormParam("text") String text) {
+	public Response newStudentFromForm(@Context UriInfo uriInfo, @FormParam("fName") String fName, 
+										@FormParam("lName") String lName) {
 		int id = counter.incrementAndGet();
-		Student message = new Student(id, text, Instant.now());
-		map.put(id, message);
+		String idString = String.valueOf(id);
+		Student student = new Student(idString, fName, lName);
+		map.put(id, student);
 		URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
 		return Response.created(location).status(Response.Status.MOVED_PERMANENTLY).build();
-	} */
+	} 
 
 }

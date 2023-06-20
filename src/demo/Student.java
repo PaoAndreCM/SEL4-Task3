@@ -1,5 +1,6 @@
 package demo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Student {
@@ -54,5 +55,15 @@ public class Student {
     public void updateLabGroup(String courseId, String labgroupId){
         enrolledTo.replace(courseId,labgroupId);
     }
+
+    @Override
+public String toString() {
+    return "Student{" +
+            "id='" + id + '\'' +
+            ", fName='" + fName + '\'' +
+            ", lName='" + lName + '\'' +
+            '}';
+}
+
 
 }
