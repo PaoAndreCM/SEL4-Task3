@@ -5,7 +5,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
-import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,7 +29,7 @@ public class StudentResource {
 	public String getAllStudentsAsText() {
 		StringBuilder stringBuilder = new StringBuilder();
 		map.values().stream()
-				.sorted((m1, m2) -> m1.getlName().compareTo(m2.getlName()))
+				.sorted((m1, m2) -> m1.getLastName().compareTo(m2.getLastName()))
 				.forEach(m -> stringBuilder.append(m.toString() + "\n"));
 		return stringBuilder.toString();
 	}
@@ -83,12 +82,12 @@ public class StudentResource {
 		return Response.ok(stringBuilder.toString()).build();
 	} */
 
-	/* @GET
+/* 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Student> getAllMessagesAsJson() {
+	public List<Student> getAllStudentsAsJson() {
 		StringBuilder stringBuilder = new StringBuilder();
 		List<Student> list = map.values().stream()
-				.sorted((m1, m2) -> -m1.getTimestamp().compareTo(m2.getTimestamp()))
+				.sorted((m1, m2) -> m1.getLastName().compareTo(m2.getLastName()))
 				.collect(Collectors.toList());
 		return list;
 	} */
@@ -117,7 +116,7 @@ public class StudentResource {
 		return list;
 	} */
 
-/* 	@POST
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newStudent(@Context UriInfo uriInfo, Student student) {
 		int id = counter.incrementAndGet();
@@ -126,7 +125,7 @@ public class StudentResource {
 		map.put(id, student);
 		URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
 		return Response.created(location).build();
-	} */
+	}
 
 	/* @PUT
 	@Path("{id}")
@@ -155,11 +154,11 @@ public class StudentResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response newStudentFromForm(@Context UriInfo uriInfo, @FormParam("fName") String fName, 
-										@FormParam("lName") String lName) {
+	public Response newStudentFromForm(@Context UriInfo uriInfo, @FormParam("fName") String firstName, 
+										@FormParam("lName") String lastName) {
 		int id = counter.incrementAndGet();
 		String idString = String.valueOf(id);
-		Student student = new Student(idString, fName, lName);
+		Student student = new Student(idString, firstName, lastName);
 		map.put(id, student);
 		URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
 		return Response.created(location).status(Response.Status.MOVED_PERMANENTLY).build();

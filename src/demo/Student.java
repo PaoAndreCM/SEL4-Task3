@@ -1,18 +1,23 @@
 package demo;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Student {
     private String id;
-    private String fName;
-    private String lName;
+    private String firstName;
+    private String lastName;
     private Map<String, String> enrolledTo;
 
-    public Student(String id, String fName, String lName){
+    public Student(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+    }
+
+    public Student(String id, String firstName, String lastName){
         this.id = id;
-        this.fName = fName;
-        this. lName = lName;
+        this.firstName = firstName;
+        this. lastName = lastName;
     }
 
 
@@ -24,20 +29,20 @@ public class Student {
         this.id = id;
     }
 
-    public String getfName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setfName(String FName) {
-        this.fName = FName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setlName(String LName) {
-        this.lName = LName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Map<String, String> getEnrolledTo() {
@@ -60,8 +65,8 @@ public class Student {
 public String toString() {
     return "Student{" +
             "id='" + id + '\'' +
-            ", fName='" + fName + '\'' +
-            ", lName='" + lName + '\'' +
+            ", fName='" + firstName + '\'' +
+            ", lName='" + lastName + '\'' +
             '}';
 }
 
